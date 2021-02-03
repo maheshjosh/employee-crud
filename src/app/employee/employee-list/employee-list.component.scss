@@ -38,17 +38,26 @@
     }
   }
 
-  .search-box {
-    left: 29px;
-    position: absolute;
-    top: 11px;
+  .grid-search {
+    position: relative;
+
+    .search-box {
+      left: 10px;
+      position: absolute;
+      top: 10px;
+    }
   }
 
-  .close-icon {
-    cursor: pointer;
-    left: 308px;
-    position: absolute;
-    top: 14px;
+  .pl-20 {
+    padding-left: 20px;
+  }
+
+  .mt-10 {
+    margin-top: 20px;
+  }
+
+  .mb-10 {
+    margin-bottom: 20px;
   }
 
   p-table {
@@ -204,8 +213,32 @@
       }
     }
 
-    tfoot {
-      display: none;
+    // tfoot {
+    //   display: none;
+    // }
+  }
+
+  .p-datatable-tfoot {
+    tr {
+      td {
+        border: 0;
+        background: none;
+      }
+    }
+  }
+
+  .no-records {
+    font-size: 17px;
+    font-weight: 600;
+    height: 40px;
+    padding-top: 12px;
+    text-align: center;
+    width: 100%;
+
+    .center-div {
+      position: absolute;
+      text-align: center;
+      width: 100%;
     }
   }
 }

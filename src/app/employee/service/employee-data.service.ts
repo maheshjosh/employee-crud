@@ -1,73 +1,45 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
-export class Filter {
-  showOnlySale?: boolean;
-  highPrize?: number;
-}
 
-export class SaleItem {
-  id?: number;
-  name?: string;
-  phone?: string;
-  address?: any;
-}
-
-export class CartItem extends SaleItem {
-  count?= 0;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EmployeeDataService {
+
+  // private serverUrl = 'http://localhost:3000/';
+
   constructor() { }
 
-  // getObservaleProducts(sort: Filter) {
-  //   return of(this.getProducts()).pipe(
-  //     map(products => {
-  //       return !sort
-  //         ? products
-  //         : products.filter(item => {
-  //           const result_sort = sort.showOnlySale
-  //             ? sort.showOnlySale === item.sale
-  //             : true;
-
-  //           const result_prize = sort.highPrize
-  //             ? sort.highPrize <= item.price
-  //             : true;
-
-  //           return result_sort && result_prize;
-  //         });
-  //     })
-  //   );
-  // }
-
-  getObservableCart(): Observable<CartItem[]> {
-    return of(this.getCart());
+  private extractData(res: Response) {
+    let body = res;
+    return body || {};
   }
 
-  async addToCart(item: SaleItem) {
-    const items: SaleItem[] = this.getCart();
-    items.push(item);
-    await localStorage.setItem('Cart', JSON.stringify(items));
+  getEmployee() {
+    return this.employee;
+    //return this.http.get(this.serverUrl + 'employee').pipe(map(this.extractData));
   }
 
-  async isinCart(id: number) {
-    const items = this.getCart();
-    const result = await items.map(item => {
-      return item.id === id;
-    });
-    return result.includes(true);
+  getEmployeeById(id) {
+    return this.employee[id];
+    //return this.http.get(this.serverUrl + 'employee/' + id).pipe(map(this.extractData));
   }
 
-  getCart(): CartItem[] {
-    return JSON.parse(localStorage.getItem('Cart') || '[]');
+  updateEmployee(id, emp) {
+    this.employee[id] = emp;
+    return emp;
+    //return this.http.put(this.serverUrl + 'employee/' + id, JSON.stringify(emp));
   }
 
-  getProducts(): SaleItem[] {
-    return [{
+  savaEmployee(emp) {
+    this.employee.push(emp);
+    return emp;
+  }
+
+  deleteEmployee(id, index) {
+    return this.employee[id];
+  }
+
+  employee = [
+    {
       "id": 1,
       "name": "Jhon",
       "phone": "9999999999",
@@ -100,10 +72,20 @@ export class EmployeeDataService {
         "address_line2": "XYZ building",
         "postal_code": "12455"
       }
+    },
+    {
+      "id": 4,
+      "name": "",
+      "phone": "",
+      "address":
+      {
+        "city": "",
+        "address_line1": "",
+        "address_line2": "",
+        "postal_code": ""
+      }
     }
-    ]
-  }
-
+  ];
 
 }
 

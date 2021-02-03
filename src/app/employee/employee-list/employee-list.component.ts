@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeDataService } from '../service/employee-data.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -7,61 +8,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeListComponent implements OnInit {
 
-  formsData: any = [];
+  employeeData: any = [];
+  search = '';
 
-  constructor() { }
+  constructor(
+    private employeeService: EmployeeDataService,
+  ) { }
 
   ngOnInit(): void {
+    this.employeeData = this.employeeService.getEmployee();
 
-    this.formsData = [
-      {
-        "id": 1,
-        "name": "Jhon",
-        "phone": "9999999999",
-        "address":
-        {
-          "city": "Pune",
-          "address_line1": "ABC road",
-          "address_line2": "XYZ building",
-          "postal_code": "12455"
-        }
-      }, {
-        "id": 2,
-        "name": "Jacob",
-        "phone": "AZ99A99PQ9",
-        "address":
-        {
-          "city": "Pune",
-          "address_line1": "PQR road",
-          "address_line2": "ABC building",
-          "postal_code": "13455"
-        }
-      }, {
-        "id": 3,
-        "name": "Ari",
-        "phone": "145458522",
-        "address":
-        {
-          "city": "Mumbai",
-          "address_line1": "ABC road",
-          "address_line2": "XYZ building",
-          "postal_code": "12455"
-        }
-      },
-      {
-        "id": 4,
-        "name": "",
-        "phone": "",
-        "address":
-        {
-          "city": "",
-          "address_line1": "",
-          "address_line2": "",
-          "postal_code": ""
-        }
-      }
-    ];
+
+    // this.getEmployeeData();
   }
+
+
+  public onQuickFilterChanged($event) {
+    if ($event.key === 'Enter') {
+      const restArr = []
+      if (this.search && this.search !== '') {
+        this.employeeData.filter((element) => {
+          if (element.name.toLowerCase() == this.search.toLowerCase()) {
+            restArr.push(element);
+          }
+          this.employeeData = restArr
+        })
+      }
+    } else {
+      this.employeeData = this.employeeService.getEmployee();
+    }
+  }
+  // onClickEdit(formId) {
+  //   debugger
+  // }
 
 
 }

@@ -1,20 +1,33 @@
 <div class="container">
 
   <div class="p-grid">
+    <div class="p-col-12 search-and-export-data-panel p-grid mb-10">
+      <div class=" p-col-12 p-md-6 p-lg-6 pl-20">
+        <div class="grid-search">
+          <input autocomplete="off" type="text" class="grid-search-bar top" [(ngModel)]="search"
+            (keyup)=onQuickFilterChanged($event) placeholder="Enter to Search by Name" />
+          <div class="search-box"><i class="fa fa-search" aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </div>
+
+
     <div class="p-col-12">
-      <p-table [value]="formsData" class="p-col-12" [rowHover]="true" [filterDelay]="0"
+      <p-table [value]="employeeData" class="p-col-12" [rowHover]="true" [filterDelay]="0"
         [globalFilterFields]="['title']">
         <ng-template pTemplate="header">
           <tr>
-            <th pSortableColumn="formTitle">Id
-              <p-sortIcon field="formTitle"></p-sortIcon>
+            <th pSortableColumn="false">Id
             </th>
-            <th pSortableColumn="false">Name</th>
+            <th pSortableColumn="name">Name
+              <p-sortIcon field="name"></p-sortIcon>
+            </th>
             <th pSortableColumn="false">Phone</th>
             <th pSortableColumn="false">City</th>
             <th pSortableColumn="false">Address 1</th>
             <th pSortableColumn="false">Address 2</th>
             <th pSortableColumn="false">Postal Code</th>
+            <!-- <th pSortableColumn="false">Action</th> -->
           </tr>
         </ng-template>
 
@@ -28,13 +41,14 @@
             <td> {{forms.address.address_line1 ? forms.address.address_line1 : 'NA'}} </td>
             <td> {{forms.address.address_line2 ? forms.address.address_line2 : 'NA'}} </td>
             <td> {{forms.address.postal_code ? forms.address.postal_code : 'NA'}} </td>
+            <!-- <td> <button pButton class="" label="Edit" (click)="onClickEdit(forms.id)"></button> </td> -->
           </tr>
         </ng-template>
 
         <ng-template pTemplate="footer">
           <tr class="">
             <td>
-              <div class="no-records" *ngIf="formsData.length === 0">
+              <div class="no-records" *ngIf="employeeData.length === 0">
                 <div class="center-div">No records found</div>
               </div>
             </td>
