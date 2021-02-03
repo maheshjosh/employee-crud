@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-table [value]="formsData" class="p-col-12" [rowHover]="true" [filterDelay]="0"
+        [globalFilterFields]="['title']">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="formTitle">Id
+              <p-sortIcon field="formTitle"></p-sortIcon>
+            </th>
+            <th pSortableColumn="false">Name</th>
+            <th pSortableColumn="false">Phone</th>
+            <th pSortableColumn="false">City</th>
+            <th pSortableColumn="false">Address 1</th>
+            <th pSortableColumn="false">Address 2</th>
+            <th pSortableColumn="false">Postal Code</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-forms let-rowIndex="rowIndex" [pSelectableRowIndex]="rowIndex"
+          [class]="rowIndex%2==0?'even-row':'odd-row'">
+          <tr>
+            <td> {{forms.id ? forms.id : 'NA'}} </td>
+            <td> {{forms.name ? forms.name : 'NA'}} </td>
+            <td> {{forms.phone ? forms.phone : 'NA'}} </td>
+            <td> {{forms.address.city  ? forms.address.city : 'NA'}} </td>
+            <td> {{forms.address.address_line1 ? forms.address.address_line1 : 'NA'}} </td>
+            <td> {{forms.address.address_line2 ? forms.address.address_line2 : 'NA'}} </td>
+            <td> {{forms.address.postal_code ? forms.address.postal_code : 'NA'}} </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+          <tr class="">
+            <td>
+              <div class="no-records" *ngIf="formsData.length === 0">
+                <div class="center-div">No records found</div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+  </div>
+
+</div>
