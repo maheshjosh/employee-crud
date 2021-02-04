@@ -1,7 +1,7 @@
 :host::ng-deep {
   .container {
     background: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
     padding-bottom: 0;
     padding-left: 0;
 
@@ -58,6 +58,11 @@
 
   .mb-10 {
     margin-bottom: 20px;
+  }
+
+  .add-btn {
+    float: right;
+    margin-left: 10px;
   }
 
   p-table {
@@ -239,6 +244,14 @@
       position: absolute;
       text-align: center;
       width: 100%;
+    }
+  }
+
+  .page-header {
+    margin-bottom: 30px;
+
+    h2 {
+      margin: 0;
     }
   }
 }

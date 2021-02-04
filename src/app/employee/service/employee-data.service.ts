@@ -3,42 +3,67 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class EmployeeDataService {
+  empData = [];
 
-  // private serverUrl = 'http://localhost:3000/';
+  constructor() {
+    this.empData = this.getItem('employee');
 
-  constructor() { }
+    if (!this.empData) {
+      this.setItem('employee', this.dumyEmployee);
+    }
 
-  private extractData(res: Response) {
-    let body = res;
-    return body || {};
+    if (this.empData) {
+      if (this.empData.length < 4) {
+        this.setItem('employee', this.dumyEmployee);
+      }
+    }
+
   }
 
   getEmployee() {
-    return this.employee;
-    //return this.http.get(this.serverUrl + 'employee').pipe(map(this.extractData));
+    this.empData = this.getItem('employee');
+    return this.empData;
   }
 
   getEmployeeById(id) {
-    return this.employee[id];
-    //return this.http.get(this.serverUrl + 'employee/' + id).pipe(map(this.extractData));
+    if (id) {
+      let res;
+      this.empData.filter((element) => {
+        if (id == element.id) {
+          res = element;
+        }
+      })
+      return res;
+    }
   }
 
   updateEmployee(id, emp) {
-    this.employee[id] = emp;
-    return emp;
-    //return this.http.put(this.serverUrl + 'employee/' + id, JSON.stringify(emp));
+    emp.id = id;
+    const index = Number(id) - 1;
+    this.empData[index] = emp;
+    this.setItem('employee', this.empData);
   }
 
   savaEmployee(emp) {
-    this.employee.push(emp);
-    return emp;
+    emp.id = this.empData.length + 1;
+    this.empData.push(emp);
+    this.setItem('employee', this.empData);
   }
 
-  deleteEmployee(id, index) {
-    return this.employee[id];
+  getItem<T>(key: string): T {
+    let result = null;
+    result = localStorage.getItem(key);
+    if (result != null) {
+      result = JSON.parse(result);
+    }
+    return result;
   }
 
-  employee = [
+  setItem<T>(key: string, value: T) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  dumyEmployee = [
     {
       "id": 1,
       "name": "Jhon",
@@ -71,18 +96,6 @@ export class EmployeeDataService {
         "address_line1": "ABC road",
         "address_line2": "XYZ building",
         "postal_code": "12455"
-      }
-    },
-    {
-      "id": 4,
-      "name": "",
-      "phone": "",
-      "address":
-      {
-        "city": "",
-        "address_line1": "",
-        "address_line2": "",
-        "postal_code": ""
       }
     }
   ];

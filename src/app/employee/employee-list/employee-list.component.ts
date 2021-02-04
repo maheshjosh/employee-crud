@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeeDataService } from '../service/employee-data.service';
 
 @Component({
@@ -13,13 +14,12 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeDataService,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
     this.employeeData = this.employeeService.getEmployee();
-
-
-    // this.getEmployeeData();
   }
 
 
@@ -28,7 +28,11 @@ export class EmployeeListComponent implements OnInit {
       const restArr = []
       if (this.search && this.search !== '') {
         this.employeeData.filter((element) => {
-          if (element.name.toLowerCase() == this.search.toLowerCase()) {
+          if (this.search.toLowerCase() == element.name.toLowerCase()) {
+            restArr.push(element);
+          }
+
+          if (this.search.toLowerCase() == element.address.city.toLowerCase()) {
             restArr.push(element);
           }
           this.employeeData = restArr
@@ -38,9 +42,15 @@ export class EmployeeListComponent implements OnInit {
       this.employeeData = this.employeeService.getEmployee();
     }
   }
-  // onClickEdit(formId) {
-  //   debugger
-  // }
+
+  onClickAdd() {
+    this.router.navigate(['/edit-employee']);
+  }
+
+
+  onClickEdit(formId) {
+    this.router.navigate(['/edit-employee'], { queryParams: { id: formId } });
+  }
 
 
 }

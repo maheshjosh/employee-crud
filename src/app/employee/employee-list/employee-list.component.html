@@ -1,13 +1,20 @@
 <div class="container">
+  <div class="page-header">
+    <h2>Employee List</h2>
+  </div>
+
 
   <div class="p-grid">
-    <div class="p-col-12 search-and-export-data-panel p-grid mb-10">
+    <div class="p-col-12 search-and-export-data-panel p-grid">
       <div class=" p-col-12 p-md-6 p-lg-6 pl-20">
         <div class="grid-search">
-          <input autocomplete="off" type="text" class="grid-search-bar top" [(ngModel)]="search"
-            (keyup)=onQuickFilterChanged($event) placeholder="Enter to Search by Name" />
+          <input type="text" class="grid-search-bar top" [(ngModel)]="search"
+            (keyup)=onQuickFilterChanged($event) placeholder="Enter to Search by Name or City" />
           <div class="search-box"><i class="fa fa-search" aria-hidden="true"></i></div>
         </div>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <button pButton class="add-btn" label="Add New" (click)="onClickAdd()"></button>
       </div>
     </div>
 
@@ -27,7 +34,7 @@
             <th pSortableColumn="false">Address 1</th>
             <th pSortableColumn="false">Address 2</th>
             <th pSortableColumn="false">Postal Code</th>
-            <!-- <th pSortableColumn="false">Action</th> -->
+            <th pSortableColumn="false">Action</th>
           </tr>
         </ng-template>
 
@@ -41,7 +48,7 @@
             <td> {{forms.address.address_line1 ? forms.address.address_line1 : 'NA'}} </td>
             <td> {{forms.address.address_line2 ? forms.address.address_line2 : 'NA'}} </td>
             <td> {{forms.address.postal_code ? forms.address.postal_code : 'NA'}} </td>
-            <!-- <td> <button pButton class="" label="Edit" (click)="onClickEdit(forms.id)"></button> </td> -->
+            <td> <button pButton class="" label="Edit" (click)="onClickEdit(forms.id)"></button> </td>
           </tr>
         </ng-template>
 

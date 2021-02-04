@@ -1,0 +1,93 @@
+:host::ng-deep {
+  .containar-layout {
+    background: #fff;
+    border-radius: 10px;
+    height: auto;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .form-field {
+    .form-label {
+      label {
+        font-size: 14px;
+      }
+    }
+
+    .asterisk {
+      color: #f44336;
+    }
+
+    .form-errors {
+      color: #ff0084;
+      margin-top: 5px;
+    }
+
+    input {
+      &[type="text"] {
+        border: 1px solid #ecedf3;
+        border-radius: 0;
+        font-size: 14px;
+        height: 32px;
+        margin: 5px 0;
+        padding: 0 2%;
+        text-overflow: ellipsis;
+        width: 100%;
+
+        &.quarter-ui {
+          width: 92%;
+        }
+
+        &:hover {
+          border: 1px solid #ecedf3;
+        }
+      }
+
+      &::placeholder {
+        font-size: 16px;
+      }
+
+      &:read-only {
+        background: #dedede;
+      }
+
+      &.full-width {
+        width: 100%;
+      }
+    }
+  }
+
+  .save-btn {
+    &.ui-state-default {
+      background-color: #3b7bff;
+      border: 1px solid #3b7bff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0 12px;
+      width: 100px;
+
+      &:enabled {
+        &:hover {
+          background-color: #3b7bff;
+          border: 1px solid #3b7bff;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .backbtn {
+    font-size: 15px;
+    margin-right: 10px;
+    color: #334cbd;
+    cursor: pointer;
+  }
+  
+
+  .p-button {
+    width: 166px;
+    float: right;
+    margin-right: 70px;
+  }
+}

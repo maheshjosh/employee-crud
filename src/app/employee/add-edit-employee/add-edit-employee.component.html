@@ -1,0 +1,163 @@
+<div class="container">
+  <div class="page-header">
+    <h2> <span class="backbtn" (click)="goBack()"><i class="fa fa-arrow-left"></i></span> {{ empHeader }} </h2>
+  </div>
+
+  <div class="p-grid form-container containar-layout">
+    <div class=" p-col-12 p-lg-7 p-md-7">
+      <form [formGroup]='editEmployeeForm'>
+        <div class="p-grid">
+
+          <div class="form-field p-col-12">
+            <div class="form-label">
+              <label for="name">Name</label>
+              <label class="asterisk">*</label>
+            </div>
+            <div class="">
+              <input formControlName="name" type="text" placeholder="Name" pInputText />
+            </div>
+            <div class="form-errors"
+              *ngIf="editEmployeeForm.controls.name.errors  && (editEmployeeForm.controls.name.dirty || editEmployeeForm.controls.name.touched)">
+              <div [hidden]="!editEmployeeForm.controls.name.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.name.errors.pattern">
+                Invalid name
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.name.errors.maxlength">
+                You have exceeded the maximum 50 character limit
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-field p-col-12">
+            <div class="form-label">
+              <label for="phone">Phone</label>
+              <label class="asterisk">*</label>
+            </div>
+            <div class="">
+              <input class="pl-20" formControlName="phone" type="text" placeholder="Phone"
+                pInputText />
+            </div>
+
+            <div class="form-errors"
+              *ngIf="editEmployeeForm.controls.phone.errors  && (editEmployeeForm.controls.phone.dirty || editEmployeeForm.controls.phone.touched)">
+              <div [hidden]="!editEmployeeForm.controls.phone.errors.required">
+                Phone number is required
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.phone.errors.pattern">
+                Invalid phone number
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.phone.errors.minlength">
+                Minimum 6 digits allowed
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.phone.errors.maxlength">
+                Maximum 15 digits allowed
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field p-col-12">
+            <div class="form-label">
+              <label for="address_line1">Address Line1</label>
+              <label class="asterisk">*</label>
+            </div>
+            <div class="">
+              <input formControlName="address_line1" type="text" placeholder="Address Line1"
+                pInputText />
+            </div>
+            <div class="form-errors"
+              *ngIf="editEmployeeForm.controls.address_line1.errors  && (editEmployeeForm.controls.address_line1.dirty || editEmployeeForm.controls.address_line1.touched)">
+              <div [hidden]="!editEmployeeForm.controls.address_line1.errors.required">
+                Address Line1 is required
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.address_line1.errors.pattern">
+                Invalid address
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.address_line1.errors.maxlength">
+                You have exceeded the maximum 100 character limit
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-field p-col-12">
+            <div class="form-label">
+              <label for="address_line2">Address Line2</label>
+            </div>
+            <div class="">
+              <input formControlName="address_line2" type="text" placeholder="Address Line2"
+                pInputText />
+            </div>
+            <div class="form-errors"
+              *ngIf="editEmployeeForm.controls.address_line2.errors  && (editEmployeeForm.controls.address_line2.dirty || editEmployeeForm.controls.address_line2.touched)">
+              <div [hidden]="!editEmployeeForm.controls.address_line2.errors.required">
+                Address Line2 is required
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.address_line2.errors.pattern">
+                Invalid address
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.address_line2.errors.maxlength">
+                You have exceeded the maximum 100 character limit
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field p-col-12">
+            <div class="form-label">
+              <label for="city">City</label>
+              <label class="asterisk">*</label>
+            </div>
+            <div class="">
+              <input formControlName="city" type="text" placeholder="City" pInputText />
+            </div>
+            <div class="form-errors"
+              *ngIf="editEmployeeForm.controls.city.errors  && (editEmployeeForm.controls.city.dirty || editEmployeeForm.controls.city.touched)">
+              <div [hidden]="!editEmployeeForm.controls.city.errors.required">
+                City is required
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.city.errors.pattern">
+                Invalid city
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.city.errors.maxlength">
+                You have exceeded the maximum 20 character limit
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field p-col-12">
+            <div class="form-label">
+              <label for="postal_code">Postal Code</label>
+              <label class="asterisk">*</label>
+            </div>
+            <div class="">
+              <input formControlName="postal_code" type="text" placeholder="Postal Code"
+                pInputText />
+            </div>
+            <div class="form-errors"
+              *ngIf="editEmployeeForm.controls.postal_code.errors  && (editEmployeeForm.controls.postal_code.dirty || editEmployeeForm.controls.postal_code.touched)">
+              <div [hidden]="!editEmployeeForm.controls.postal_code.errors.required">
+                Postal code is required
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.postal_code.errors.pattern">
+                Invalid postal code
+              </div>
+              <div [hidden]="!editEmployeeForm.controls.postal_code.errors.maxlength">
+                You have exceeded the maximum 10 character limit
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-buttons p-col-12">
+            <button pButton class="save-btn" type="button" label="Save" [disabled]="!editEmployeeForm.valid"
+              (click)="onClickAddEmployee()"></button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
